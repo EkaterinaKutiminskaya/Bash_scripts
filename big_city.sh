@@ -17,7 +17,7 @@ then
 			then echo ""
 			else
 				echo "Не введено значение больше. Ты не ввел значение, пока!" 
-				break
+				exit
 			fi	
 
 		elif [[ $guess -gt $city && $guess -le 1118 ]]; then 
@@ -26,7 +26,7 @@ then
 			then echo ""
 			else
 				echo "Не введено значение в интервале. Ты не ввел значение, пока!" 
-				break
+				exit
 			fi
 
 		else 
