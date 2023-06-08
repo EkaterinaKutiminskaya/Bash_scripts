@@ -12,38 +12,38 @@ if read -t 5 -n 4 guess
 then 
 	while [[ $guess -ne $city ]]
 	do
-	if [[ $guess -lt $city ]]; then 
-		if read -t 5 -n 4 -p "Городов больше, попробуй еще раз! " guess
-		then echo ""
-		else
-			echo "Не введено значение больше. Ты не ввел значение, пока!" 
-			break
-		fi	
+		if [[ $guess -lt $city ]]; then 
+			if read -t 5 -n 4 -p "Городов больше, попробуй еще раз! " guess
+			then echo ""
+			else
+				echo "Не введено значение больше. Ты не ввел значение, пока!" 
+				break
+			fi	
 
-	elif [[ $guess -gt $city && $guess -le 1118 ]]; then 
-		if read -t 5 -n 4 -p "Слишком много, попробуй еще раз :) " guess
-			echo -e "\n введено $guess"
-		then echo ""
-		else
-			echo "Не введено значение в интервале. Ты не ввел значение, пока!" 
-			break
-		fi
+		elif [[ $guess -gt $city && $guess -le 1118 ]]; then 
+			if read -t 5 -n 4 -p "Слишком много, попробуй еще раз :) " guess
+				echo -e "\n введено $guess"
+			then echo ""
+			else
+				echo "Не введено значение в интервале. Ты не ввел значение, пока!" 
+				break
+			fi
 
-	else 
-		if read -t 5 -n 4 -p "Введи целое число до 1118, столько городов есть в РФ " guess
-			echo -e "\n введено $guess"
-		then 
-			echo ""
-		else
-			echo -e "\nНе введено значение меньше 1118. Ты не ввел значение, пока!" 
-			exit
+		else 
+			if read -t 5 -n 4 -p "Введи целое число до 1118, столько городов есть в РФ " guess
+				echo -e "\n введено $guess"
+			then 
+				echo ""
+			else
+				echo -e "\nНе введено значение меньше 1118. Ты не ввел значение, пока!" 
+				exit
+			fi
 		fi
-	fi
 	done
 	echo "Все верно, по данным Википедии, на 2023г городов 16. Пока!"
 
 else
-	echo "Не введено первое значени. Ты не ввел значение, пока!" 
+	echo -e "\nНе введено первое значение. Ты не ввел значение, пока!" 
 	exit
 
 fi
