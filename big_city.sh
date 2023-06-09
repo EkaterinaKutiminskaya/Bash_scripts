@@ -7,41 +7,41 @@ city=16
 
 echo -n "У тебя есть немного времени на подумать. Напиши свой вариант: "
 
-if read -t 5 -n 4 guess
-	if ! [[ "$guess" =~ ^[0-9]+$ ]]; then
-    echo "Необходимо ввести целое число"
-    exit
+if read -t 5 -n 4 guess; then
+	if [[ "$guess" =~ ^[0-9]+$ ]]; then
+		while [[ $guess -ne $city ]]
+		do
+			if [[ $guess -lt $city ]]; then 
+				if read -t 5 -n 4 -p " Городов больше, попробуй еще раз! " guess
+				then echo ""
+				else
+					echo -e "\nНе введено значение больше. Ты не ввел значение, пока!" 
+					exit
+				fi	
+
+			elif [[ $guess -gt $city && $guess -le 1118 ]]; then 
+				if read -t 5 -n 4 -p " Слишком много, попробуй еще раз :) " guess
+				then echo ""
+				else
+					echo -e "\nНе введено значение в интервале. Ты не ввел значение, пока!" 
+					exit
+				fi
+
+			else 
+				if read -t 5 -n 4 -p " Введи целое число до 1118, столько городов есть в РФ " guess
+				then 
+					echo ""
+				else
+					echo -e "\nНе введено значение меньше 1118. Ты не ввел значение, пока!" 
+					exit
+				fi
+			fi
+		done
+		echo "Все верно, по данным Википедии, на 2023г городов 16. Пока!"
+	else
+		echo -e "\nВведено не число. Необходимо ввести целое число!" 
+		exit
 	fi
-then 
-	while [[ $guess -ne $city ]]
-	do
-		if [[ $guess -lt $city ]]; then 
-			if read -t 5 -n 4 -p " Городов больше, попробуй еще раз! " guess
-			then echo ""
-			else
-				echo -e "\nНе введено значение больше. Ты не ввел значение, пока!" 
-				exit
-			fi	
-
-		elif [[ $guess -gt $city && $guess -le 1118 ]]; then 
-			if read -t 5 -n 4 -p " Слишком много, попробуй еще раз :) " guess
-			then echo ""
-			else
-				echo -e "\nНе введено значение в интервале. Ты не ввел значение, пока!" 
-				exit
-			fi
-
-		else 
-			if read -t 5 -n 4 -p " Введи целое число до 1118, столько городов есть в РФ " guess
-			then 
-				echo ""
-			else
-				echo -e "\nНе введено значение меньше 1118. Ты не ввел значение, пока!" 
-				exit
-			fi
-		fi
-	done
-	echo "Все верно, по данным Википедии, на 2023г городов 16. Пока!"
 
 else
 	echo -e "\nНе введено первое значение. Ты не ввел значение, пока!" 
