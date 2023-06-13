@@ -6,19 +6,23 @@ echo "Cколько знаешь городов России с населени
 city=16
 all_city=1118
 
+function numberNotAdded () {
+					echo -e "\nТы не ввел число, пока!" 
+					exit
+}
+
 echo -n "У тебя есть немного времени на подумать. Напиши свой вариант: "
 
 if read -t 5 -n 4 guess; then
 	function checkNumber () {
-	while ! [[ "$guess" =~ ^[0-9]+$ ]]
-	do
-		if read -t 5 -n 4 -p " Нужно ввести целое число! " guess
-		then echo ""
-		else
-			echo -e "\nТы не ввел число, пока!" 
-			exit
-		fi
-	done
+		while ! [[ "$guess" =~ ^[0-9]+$ ]]
+		do
+			if read -t 5 -n 4 -p " Нужно ввести целое число больше 0! " guess
+			then echo ""
+			else
+				numberNotAdded
+			fi
+		done
 	}
 	checkNumber
 
@@ -28,16 +32,14 @@ if read -t 5 -n 4 guess; then
 			if read -t 5 -n 4 -p " Городов больше, попробуй еще раз! " guess
 			then checkNumber
 			else
-				echo -e "\nНе введено значение больше. Ты не ввел значение, пока!" 
-				exit
+				numberNotAdded
 			fi	
 
 		elif [[ $guess -gt $city && $guess -le $all_city ]]; then 
 			if read -t 5 -n 4 -p " Слишком много, попробуй еще раз :) " guess
 			then checkNumber
 			else
-				echo -e "\nНе введено значение в интервале. Ты не ввел значение, пока!" 
-				exit
+				numberNotAdded
 			fi
 
 		else 
@@ -45,18 +47,14 @@ if read -t 5 -n 4 guess; then
 			then 
 				checkNumber
 			else
-				echo -e "\nНе введено значение меньше 1118. Ты не ввел значение, пока!" 
-				exit
+				numberNotAdded
 			fi
 		fi
 	done
 	echo "Все верно, по данным Википедии, на 2023г городов 16. Пока!"
 	
-	
-
 else
-	echo -e "\nНе введено первое значение. Ты не ввел значение, пока!" 
-	exit
+	numberNotAdded
 
 fi
 
